@@ -1,0 +1,32 @@
+[apache-php-probe-extended]
+enabled  = true
+filter   = apache-php-probe-extended
+logpath  = /var/log/apache2/access.log
+backend  = polling
+port     = http,https
+maxretry = 6
+findtime = 2m
+bantime  = 1d
+action   = ufw[application="Apache Full"]
+
+[apache-secret-scan-extended]
+enabled  = true
+filter   = apache-secret-scan-extended
+logpath  = /var/log/apache2/access.log
+backend  = polling
+port     = http,https
+maxretry = 3
+findtime = 10m
+bantime  = 1w
+action   = ufw[application="Apache Full"]
+
+[apache-wp-enum-probe]
+enabled  = true
+filter   = apache-wp-enum-probe
+logpath  = /var/log/apache2/access.log
+backend  = polling
+port     = http,https
+maxretry = 12
+findtime = 5m
+bantime  = 12h
+action   = ufw[application="Apache Full"]
